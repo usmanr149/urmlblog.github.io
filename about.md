@@ -4,12 +4,12 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
+Hello all, my name is Usman. I am a data scientist at the City of Edmonton.
 
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+I started this blog to share my work on Machine Learning.
 
 ### Contact me
-
-[email@domain.com](mailto:email@domain.com)
+Usman Rizwan
+Edmonton, Canada
+Email: urizwan [at] gmain [dot] com
+[Curriculum Vitae](https://usmanr149.github.io/usmanrizwands/)

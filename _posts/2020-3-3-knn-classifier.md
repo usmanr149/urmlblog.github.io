@@ -3,6 +3,10 @@ layout: post
 title: Implement and Apply a k-Nearest Neighbor (kNN) Classifier -- Exercise
 ---
 
+I am currently listening to the lectures for 
+[CS231n: Convolutional Neural Networks for Visual Recognition](https://www.youtube.com/watch?v=vT1JzLTH4G4&list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&index=1)
+I will post my solutions to the [programming exercises](http://cs231n.github.io/) attached with this course here.
+
 In this exercise we are asked to train a k-NN classifier on the CIFAR-10 dataset. 
 The CIFAR-10 dataset consists of 60000 32x32 colour images in 10 classes, 
 with 6000 images per class. There are 50000 training images and 10000 test images.
@@ -110,3 +114,28 @@ X\_train[0] \cdot X\_test[500] & X\_train[1] \cdot X\_test[500]) & \dots & X\_tr
 \end{pmatrix}
 \end{align*}
 $$
+
+Now this not the most intuitive way to think about this but we can actually use numpy 
+to matrix calculations above in a single line.
+
+```python
+dists = (self.X_train**2).sum(axis=1) + (X**2).sum(axis=1)[:, np.newaxis] - 2*X.dot(self.X_train.T)
+```
+
+Here is how long each version of the code takes to run on the CIFAR-10 dataset:
+
+```
+Two loop version took 21.103897 seconds
+One loop version took 39.334489 seconds
+No loop version took 0.198159 seconds
+```
+
+As stated in the assignment notes: 
+
+```
+# NOTE: depending on what machine you're using, 
+# you might not see a speedup when you go from two loops to one loop, 
+# and might even see a slow-down.
+```
+
+To see the full assignment, see [here](https://github.com/usmanr149/CS231n/blob/master/assignment1/knn.ipynb).
