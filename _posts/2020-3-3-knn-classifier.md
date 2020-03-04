@@ -73,13 +73,13 @@ any loops.
 $$
 \begin{align*}
   dist &= \begin{pmatrix}
-(X\_train[0] - X\test[0]) \cdot (X\_train[0] - X\test[0]) & (X\_train[1] - X\test[0]) \cdot (X\_train[1] - X\test[0]) & \dots & 
-(X\_train[5000] - X\test[0]) \cdot (X\_train[5000] - X\test[0]) \\
-(X\_train[0] - X\test[1]) \cdot (X\_train[0] - X\test[1]) & (X\_train[1] - X\test[1]) \cdot (X\_train[1] - X\test[1]) & \dots & 
-(X\_train[5000] - X\test[1]) \cdot (X\_train[5000] - X\test[1]) \\
+(X\_train[0] - X\_test[0]) \cdot (X\_train[0] - X\_test[0]) & (X\_train[1] - X\_test[0]) \cdot (X\_train[1] - X\_test[0]) & \dots & 
+(X\_train[5000] - X\_test[0]) \cdot (X\_train[5000] - X\_test[0]) \\
+(X\_train[0] - X\_test[1]) \cdot (X\_train[0] - X\_test[1]) & (X\_train[1] - X\_test[1]) \cdot (X\_train[1] - X\_test[1]) & \dots & 
+(X\_train[5000] - X\_test[1]) \cdot (X\_train[5000] - X\_test[1]) \\
 \vdots & \vdots & \ddots \\
-(X\_train[0] - X\test[500]) \cdot (X\_train[0] - X\test[500]) & (X\_train[1] - X\test[500]) \cdot (X\_train[1] - X\test[500]) & \dots 
- & (X\_train[5000] - X\test[500]) \cdot (X\_train[5000] - X\test[500])\\
+(X\_train[0] - X\_test[500]) \cdot (X\_train[0] - X\_test[500]) & (X\_train[1] - X\_test[500]) \cdot (X\_train[1] - X\_test[500]) & \dots 
+ & (X\_train[5000] - X\_test[500]) \cdot (X\_train[5000] - X\_test[500])\\
 \end{pmatrix}
 \end{align*}
 $$
