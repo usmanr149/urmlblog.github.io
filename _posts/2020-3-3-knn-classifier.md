@@ -44,4 +44,4 @@ for i in range(num_test):
 This is what the distance matrix between the training (X-axis) and testing set (Y-axis)
 looks like.
 
-![_config.yml]({{ site.baseurl }}/images/knn-10.png)
+![_config.yml]({{ site.baseurl }}/images/knn.png)
