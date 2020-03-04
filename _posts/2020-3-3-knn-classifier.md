@@ -13,11 +13,11 @@ with 6000 images per class. There are 50000 training images and 10000 test image
 
 This is rather simple, we need to calculate the Euclidean distance between each point in 
 out testing and training dataset. We have already reshaped the CIFAR-10 data into single 
-rows. So the distance between test data $i$ and train data $j$ is given as
+rows. So the distance between test data *i* and train data *j* is given as
 
 $$
 \begin{align*}
-  dist[i,j] = \sqrt{(\sum_{dim=1}^{dim=3072} (X\_train[i][dim] - X\_ test[j][dim])^2}
+  dist[i,j] = \sqrt{(\sum_{dim=1}^{dim=3072} (X\_test[i][dim] - X\_ train[j][dim])^2}
 \end{align*}
 $$
 
@@ -25,7 +25,7 @@ Another way to write this as a dot product:
 
 $$
 \begin{align*}
-  dist[i,j] = \sqrt{(X\_train[i] - X\_ test[j]) \cdot (X\_train[i] - X\_ test[j])}
+  dist[i,j] = \sqrt{(X\_test[i] - X\_ train[j]) \cdot (X\_test[i] - X\_ train[j])}
 \end{align*}
 $$
 
@@ -40,3 +40,8 @@ for i in range(num_test):
         v_sub = X[i] - self.X_train[j]
         dists[i, j] = np.sqrt(v_sub.dot(v_sub))
 ```
+
+This is what the distance matrix between the training (X-axis) and testing set (Y-axis)
+looks like.
+
+![_config.yml]({{ site.baseurl }}/images/knn-10.png)
