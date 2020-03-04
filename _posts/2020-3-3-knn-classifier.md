@@ -9,7 +9,7 @@ with 6000 images per class. There are 50000 training images and 10000 test image
 
 ![_config.yml]({{ site.baseurl }}/images/cifar-10.png)
 
-### Using Two Loops Calculate Distances
+### Using Two Loops to Calculate Distances
 
 This is rather simple, we need to calculate the Euclidean distance between each point in 
 out testing and training dataset. We have already reshaped the CIFAR-10 data into single 
@@ -17,7 +17,7 @@ rows. So the distance between test data *i* and train data *j* is given as
 
 $$
 \begin{align*}
-  dist[i,j] = \sqrt{(\sum_{dim=1}^{dim=3072} (X\_test[i][dim] - X\_ train[j][dim])^2}
+  dist[i,j] = \sqrt{(\sum_{dim=1}^{dim=3072} (X\_train[j][dim] - X\_ test[i][dim])^2}
 \end{align*}
 $$
 
@@ -25,7 +25,7 @@ Another way to write this as a dot product:
 
 $$
 \begin{align*}
-  dist[i,j] = \sqrt{(X\_test[i] - X\_ train[j]) \cdot (X\_test[i] - X\_ train[j])}
+  dist[i,j] = \sqrt{(X\_ train[j] - X\_test[i]) \cdot (X\_ train[j] - X\_test[i])}
 \end{align*}
 $$
 
@@ -45,3 +45,34 @@ This is what the distance matrix between the training (X-axis) and testing set (
 looks like.
 
 ![_config.yml]({{ site.baseurl }}/images/knn.png)
+
+The bright in the image above indicate test images that are very similar to a variety 
+of training images based on a simple Euclidean distance. This would also imply that the image classification for the images with bright rows will not be very reliable.
+
+Similarly for bright columns, the training images would be very similar 
+to all images in the test set based on simple Euclidean distance.
+
+### Using One Loop to Calculate Distances
+
+We can use some numpy magic to reduce to calculate the distance matrix with just one loop
+
+```python
+num_test = X.shape[0]
+num_train = self.X_train.shape[0]
+dists = np.zeros((num_test, num_train))
+for i in range(num_test):
+    v_sub = self.X_train - X[i]
+    dists[i] = np.sqrt(np.sum(v_sub**2, axis=1))
+```
+
+### Using No Loop to Calculate Distances
+
+We can simplify the calculation even further to the point where we don't need to use
+any loops.
+
+$$
+\begin{align*}
+  dist &= \sqrt{(X\_ train - X\_test) \cdot (X\_ train - X\_test)}
+  &= X\_ train \cdot X\_ train + X\_ test \cdot X\_ test - 2*X\_ train \cdot X\_ test
+\end{align*}
+$$
