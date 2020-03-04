@@ -116,7 +116,7 @@ X\_train[0] \cdot X\_test[500] & X\_train[1] \cdot X\_test[500]) & \dots & X\_tr
 $$
 
 Now this not the most intuitive way to think about this but we can actually use numpy 
-to matrix calculations above in a single line.
+to do the matrix calculations above in a single line.
 
 ```python
 dists = (self.X_train**2).sum(axis=1) + (X**2).sum(axis=1)[:, np.newaxis] - 2*X.dot(self.X_train.T)
