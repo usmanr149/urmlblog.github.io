@@ -7,4 +7,34 @@ In this exercise we are asked to train a k-NN classifier on the CIFAR-10 dataset
 
 ![_config.yml]({{ site.baseurl }}/images/cifar-10.png)
 
-The easiest way to make your first post is to edit this one. Go into /_posts/ and update the Hello World markdown file. For more instructions head over to the [Jekyll Now repository](https://github.com/barryclark/jekyll-now) on GitHub.
+### Using Two Loops Calculate Distances
+
+This is rather simple, we need to calculate the Euclidean distance between each point in 
+out testing and training dataset.
+
+$$
+\begin{align*}
+  & \phi(x,y) = \phi \left(\sum_{i=1}^n x_ie_i, \sum_{j=1}^n y_je_j \right)
+  = \sum_{i=1}^n \sum_{j=1}^n x_i y_j \phi(e_i, e_j) = \\
+  & (x_1, \ldots, x_n) \left( \begin{array}{ccc}
+      \phi(e_1, e_1) & \cdots & \phi(e_1, e_n) \\
+      \vdots & \ddots & \vdots \\
+      \phi(e_n, e_1) & \cdots & \phi(e_n, e_n)
+    \end{array} \right)
+  \left( \begin{array}{c}
+      y_1 \\
+      \vdots \\
+      y_n
+    \end{array} \right)
+\end{align*}
+$$
+
+```python
+num_test = X.shape[0]
+num_train = self.X_train.shape[0]
+dists = np.zeros((num_test, num_train))
+for i in range(num_test):
+    for j in range(num_train):
+        v_sub = X[i] - self.X_train[j]
+        dists[i,j] = np.sqrt(np.matmul(v_sub, v_sub.T))
+```
