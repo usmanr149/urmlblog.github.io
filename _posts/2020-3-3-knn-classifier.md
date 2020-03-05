@@ -115,7 +115,7 @@ X\_train[0] \cdot X\_test[500] & X\_train[1] \cdot X\_test[500]) & \dots & X\_tr
 \end{align*}
 $$
 
-Now this not the most intuitive way to think about this but we can actually use numpy 
+This is not the most intuitive way to think about this but we can actually use numpy 
 to do the matrix calculations above in a single line.
 
 ```python
